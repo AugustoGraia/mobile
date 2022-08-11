@@ -2,12 +2,27 @@ import React, {useContext, useState} from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
 
 import {AuthContext} from '../../contexts/AuthContext';
+import {StackParametrosList} from '../../routes/app.routes';
+
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 
 export default function Dashboard(){
+    //Recevendo parametros para o navigate
+    const navigation = useNavigation<NativeStackNavigationProp <StackParametrosList>>();
     const [numero, setNumero] = useState('');
 
     async function openOrder(){
-        alert("teste "+ numero )
+       if(numero === ''){
+        alert("Insira um número valido")
+        return;
+       }
+       //Redirecionamento
+       navigation.navigate('Order',{
+            number: numero,
+            order_id: 'dffd86e9-75c6-4852-846f-4c9fd9aa7325'
+       })
     }
 
     const {singOut} = useContext(AuthContext)

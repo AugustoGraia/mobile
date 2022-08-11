@@ -21,7 +21,8 @@ export default function Signin(){
     async function handreLogin(){
 
         if(email === '' || password === ''){
-            alert("Ensira todos os dados")
+            alert("Insira todos os dados")
+            return;
         }
 
         await singIn({ email, password })
