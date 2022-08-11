@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useReducer } from "react";
 import { Text, 
         View, 
         StyleSheet, 
@@ -8,7 +8,11 @@ import { Text,
         KeyboardAvoidingView, 
         Platform } from 'react-native';
 
+import { AuthContext } from '../../contexts/AuthContext';
+
 export default function Signin(){
+
+    const { user } = useContext(AuthContext);
 
     const [email, setEmail ] =  useState('');
     const [senha, setSenha ] =  useState('');
@@ -29,6 +33,7 @@ export default function Signin(){
                 style={styles.logo}
                 source={require('../../assets/pizza.png')}
                 />
+                    <Text style={{color: '#fff'}}>{user.name}</Text>
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}

@@ -4,14 +4,19 @@ import Signin from './src/pages/Signin';
 
 import { NavigationContainer } from '@react-navigation/native';
 import Routes from './src/routes';
+import React from 'react';
+import {AuthProvider} from './src/contexts/AuthContext';
+
 
 export default function App() {
   return (
     <NavigationContainer>
-      <View style={styles.StatusBar}>
-        <StatusBar barStyle="light-content" translucent={false} />
-      </View>
-      <Routes/>
+      <AuthProvider>
+            <View style={styles.StatusBar}>
+              <StatusBar barStyle="light-content" translucent={false} />
+            </View>
+          <Routes/>
+      </AuthProvider>
     </NavigationContainer>
   
   );
