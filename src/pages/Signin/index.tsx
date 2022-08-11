@@ -6,13 +6,14 @@ import { Text,
         TextInput, 
         TouchableOpacity, 
         KeyboardAvoidingView, 
+        ActivityIndicator,
         Platform } from 'react-native';
 
 import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Signin(){
 
-    const { singIn } = useContext(AuthContext);
+    const { singIn, loadingAuth } = useContext(AuthContext);
 
     const [email, setEmail ] =  useState('');
     const [password, setPassword ] =  useState('');
@@ -55,7 +56,11 @@ export default function Signin(){
                     />
                     
                     <TouchableOpacity style={styles.button} onPress={handreLogin}>
+                        {loadingAuth ? (
+                            <ActivityIndicator size={25} color={'#ffff'}/>
+                        ):(
                         <Text style={styles.textButton}>Acessar</Text>
+                        )}
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>

@@ -10,8 +10,8 @@ import { AuthContext } from '../contexts/AuthContext';
 
 function Routes(){
 
-    const {isAthenticated} = useContext(AuthContext);
-    const loading = false;
+    const {isAthenticated, loading} = useContext(AuthContext);
+    
 
     if(loading){
         return(
@@ -22,7 +22,7 @@ function Routes(){
                 justifyContent: 'center',
                 alignItems: 'center'
              }}>
-                <ActivityIndicator size={60} color='#fff'/>
+                <ActivityIndicator size={"large"} color='#fff'/>
             </View>
         )
 
