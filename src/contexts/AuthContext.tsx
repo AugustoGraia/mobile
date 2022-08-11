@@ -1,4 +1,7 @@
 import React, {useState, createContext, ReactNode } from "react"; 
+import { api } from '../services/api';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type AuthContextData = {
     user: UserProps,
@@ -25,7 +28,7 @@ type SingInProps = {
 }
 
 export const AuthContext = createContext({} as AuthContextData);
-
+//user só  podera permanecer na aplicação com esses dados
 export function AuthProvider({children}: AuthProvideProps){
     const [user, setUser] = useState<UserProps>({
         id: '',
@@ -35,11 +38,44 @@ export function AuthProvider({children}: AuthProvideProps){
     })
 
     const isAthenticated = !!user.name;
+    
+    const [loading, setLoading ] = useState(false);
 
 
     async function singIn ({email, password }: SingInProps){
-        console.log(email)
-        console.log(password)
+        setLoading(true)
+
+        try{
+            const response = await api.post('/session', {
+                email,
+                password
+            })
+
+            //console.log(response.data)
+            const { id, name, token } = response.data;
+
+            const data = {
+                ...response.data
+            }
+
+            await AsyncStorage.setItem('@getpizzaria', JSON.stringify(data))
+            //Passando o token no Bearer
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+            setUser({
+                id,
+                name,
+                token,
+                email,
+            })
+
+            setLoading(false)
+
+
+        }catch(erro){
+            console.log("erro ao acessar "+ erro)          
+            setLoading(false)
+        }
 
     }
 
