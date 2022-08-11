@@ -1,35 +1,56 @@
-import React from "react";
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, KeyboardAvoidingView,Platform } from 'react-native';
+import React, { useState } from "react";
+import { Text, 
+        View, 
+        StyleSheet, 
+        Image, 
+        TextInput, 
+        TouchableOpacity, 
+        KeyboardAvoidingView, 
+        Platform } from 'react-native';
 
 export default function Signin(){
+
+    const [email, setEmail ] =  useState('');
+    const [senha, setSenha ] =  useState('');
+
+    function handreLogin(){
+
+        if(email === '' || senha === ''){
+            alert("Ensira todos os dados")
+        }
+
+    }
 
     return(
         
         <View style={styles.container}>
-            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.container}>
-            <Image
-            style={styles.logo}
-            source={require('../../assets/pizza.png')}
-            />
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Digite seu email"
-                    placeholderTextColor="#f0f0f0"
+            <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
+                <Image
+                style={styles.logo}
+                source={require('../../assets/pizza.png')}
                 />
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Digite seu email"
+                        placeholderTextColor="#f0f0f0"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Digite sua senha" 
-                    placeholderTextColor="#f0f0f0"
-                    secureTextEntry={true}
-                />
-                
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.textButton}>Acessar</Text>
-                </TouchableOpacity>
-            </View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Digite sua senha" 
+                        placeholderTextColor="#f0f0f0"
+                        secureTextEntry={true}
+                        value={senha}
+                        onChangeText={setSenha}
+                    />
+                    
+                    <TouchableOpacity style={styles.button} onPress={handreLogin}>
+                        <Text style={styles.textButton}>Acessar</Text>
+                    </TouchableOpacity>
+                </View>
             </KeyboardAvoidingView>
         </View>
     )
