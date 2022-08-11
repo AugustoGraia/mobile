@@ -12,16 +12,18 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Signin(){
 
-    const { user } = useContext(AuthContext);
+    const { singIn } = useContext(AuthContext);
 
     const [email, setEmail ] =  useState('');
-    const [senha, setSenha ] =  useState('');
+    const [password, setPassword ] =  useState('');
 
-    function handreLogin(){
+    async function handreLogin(){
 
-        if(email === '' || senha === ''){
+        if(email === '' || password === ''){
             alert("Ensira todos os dados")
         }
+
+        await singIn({ email, password })
 
     }
 
@@ -33,7 +35,7 @@ export default function Signin(){
                 style={styles.logo}
                 source={require('../../assets/pizza.png')}
                 />
-                    <Text style={{color: '#fff'}}>{user.name}</Text>
+                    
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
@@ -48,8 +50,8 @@ export default function Signin(){
                         placeholder="Digite sua senha" 
                         placeholderTextColor="#f0f0f0"
                         secureTextEntry={true}
-                        value={senha}
-                        onChangeText={setSenha}
+                        value={password}
+                        onChangeText={setPassword}
                     />
                     
                     <TouchableOpacity style={styles.button} onPress={handreLogin}>
