@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Dashboard from '../pages/Dashboard';
 import Order from "../pages/Order";
-
+//Passagem de parametros
 export type StackParametrosList = {
     Dashboard: undefined,
     Order: {

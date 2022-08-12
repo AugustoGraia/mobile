@@ -19,17 +19,14 @@ type UserProps = {
     email: string,
     token: string,
 }
-
 type AuthProvideProps = {
     children: ReactNode,
 }
-
 type SingInProps = {
     email: string,
     password: string,
 
 }
-
 export const AuthContext = createContext({} as AuthContextData);
 //user só  podera permanecer na aplicação com esses dados
 export function AuthProvider({children}: AuthProvideProps){
@@ -39,18 +36,15 @@ export function AuthProvider({children}: AuthProvideProps){
         email: '',
         token: '',
     })
-
     const isAthenticated = !!user.name;
     const [loadingAuth, setLoadingAuth ] = useState(false);
     const [loading, setLoading] = useState(true);
-
     //Pegando dados salvos user
     useEffect(() => {
 
         async function getUser(){
             const userInfo = await AsyncStorage.getItem('@getpizzaria');
             let hasUser: UserProps = JSON.parse(userInfo || '{}')
-
             //Verificando se a informações do user
             if(Object.keys(hasUser).length > 0){
                 api.defaults.headers.common['Authorization'] = `Bearer ${hasUser.token}`

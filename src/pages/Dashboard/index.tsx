@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
 
-import {AuthContext} from '../../contexts/AuthContext';
 import {StackParametrosList} from '../../routes/app.routes';
 
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +8,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 
 export default function Dashboard(){
-    //Recevendo parametros para o navigate
+    //Recebendo parametros para o navigate do routes
     const navigation = useNavigation<NativeStackNavigationProp <StackParametrosList>>();
     const [numero, setNumero] = useState('');
 
@@ -25,7 +24,6 @@ export default function Dashboard(){
        })
     }
 
-    const {singOut} = useContext(AuthContext)
 
     return(
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
