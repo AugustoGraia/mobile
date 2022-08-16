@@ -28,7 +28,8 @@ type SingInProps = {
 
 }
 export const AuthContext = createContext({} as AuthContextData);
-//user só  podera permanecer na aplicação com esses dados
+// user só  podera permanecer na aplicação com esses dados
+// children é o parametro que sera rederizado em toda aplicação
 export function AuthProvider({children}: AuthProvideProps){
     const [user, setUser] = useState<UserProps>({
         id: '',
