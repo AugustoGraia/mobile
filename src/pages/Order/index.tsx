@@ -19,8 +19,9 @@ export default function Order(){
 
     return(
         <View style={styles.container}>
-            <Text>Teste Order</Text>
-                <Text>{route.params.number}</Text>
+            <View style={styles.titele}> 
+                <Text style={styles.number}>Mesa {route.params.number}</Text>
+            </View>
         </View>
     )
 } 
@@ -28,6 +29,17 @@ export default function Order(){
 const styles = StyleSheet.create({
     container:{
         flex: 1,
+        backgroundColor: '#1d1d2e',
+        paddingVertical: '5$',
+        paddingEnd: '4%',
+        paddingStart: '4%',
+        paddingTop: 10,
+    },
+    titele:{
 
+    },
+    number:{
+        
     }
+    
 })
