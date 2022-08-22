@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { useRoute, RouteProp } from '@react-navigation/native';
+
+import { Feather } from '@expo/vector-icons';
 
 //Tipo do parametro que ira receber
 type RouteDetailParams = {
@@ -19,8 +21,11 @@ export default function Order(){
 
     return(
         <View style={styles.container}>
-            <View style={styles.titele}> 
-                <Text style={styles.number}>Mesa {route.params.number}</Text>
+            <View style={styles.header}> 
+                <Text style={styles.title}>Mesa {route.params.number}</Text>
+                <TouchableOpacity>
+                    <Feather name="trash-2" size={28}  color="#ff3f4b" />
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -30,16 +35,22 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#1d1d2e',
-        paddingVertical: '5$',
+        paddingVertical: '5%',
         paddingEnd: '4%',
         paddingStart: '4%',
         paddingTop: 10,
     },
-    titele:{
-
+    header:{
+        flexDirection: 'row',
+        marginBottom: 12,
+        alignItems: 'center',
+        marginTop: 24,
     },
-    number:{
-        
+    title:{
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#fff',
+        marginRight: 14,
     }
     
 })
