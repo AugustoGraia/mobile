@@ -6,6 +6,7 @@ import {StackParametrosList} from '../../routes/app.routes';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+import { api } from '../../services/api';
 
 export default function Dashboard(){
     //Recebendo parametros para o navigate do routes
@@ -17,11 +18,20 @@ export default function Dashboard(){
         alert("Insira um número valido")
         return;
        }
+
+       const responce = await api.post('/order', {
+        table: Number(numero)
+       })
+
+       //console.log(responce.data);
+
        //Redirecionamento
        navigation.navigate('Order',{
             number: numero,
-            order_id: 'dffd86e9-75c6-4852-846f-4c9fd9aa7325'
+            order_id: responce.data.id,
        })
+
+       setNumero('');
     }
 
 

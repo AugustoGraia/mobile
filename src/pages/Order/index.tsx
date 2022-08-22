@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 
-import { useRoute, RouteProp } from '@react-navigation/native';
-
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import { api } from '../../services/api';
 import { Feather } from '@expo/vector-icons';
 
 //Tipo do parametro que ira receber
@@ -17,13 +17,33 @@ type OrderRouterProps = RouteProp<RouteDetailParams, 'Order'>;
 
 export default function Order(){
     //Recebendo parametros da dashboard
-    const route = useRoute<OrderRouterProps>();
+    const route = useRoute<OrderRouterProps>(); 
+    const navigation = useNavigation();
+
+
+
+    async function handleCloseOrder(){
+        
+        try{
+            await api.delete('/delete/order', {
+                params:{
+                    order_id: route.params?.order_id,
+                }
+            })
+
+            navigation.goBack();
+
+        }catch(err){
+            console.log(err)
+        }
+    }
+
 
     return(
         <View style={styles.container}>
             <View style={styles.header}> 
                 <Text style={styles.title}>Mesa {route.params.number}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleCloseOrder}>
                     <Feather name="trash-2" size={28}  color="#ff3f4b" />
                 </TouchableOpacity>
             </View>
