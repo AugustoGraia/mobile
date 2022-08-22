@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 
 import { useRoute, RouteProp } from '@react-navigation/native';
 
@@ -27,6 +27,25 @@ export default function Order(){
                     <Feather name="trash-2" size={28}  color="#ff3f4b" />
                 </TouchableOpacity>
             </View>
+
+            <TouchableOpacity style={styles.input}>
+                <Text style={{ color: '#fff'}}>Pizzas</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.input}>
+                <Text style={{ color: '#fff'}}>Pizzas de frango</Text>
+            </TouchableOpacity>
+
+            <View style={styles.qtdConteiner}>
+                <Text style={styles.qtdText}>Quantidade</Text>
+                <TextInput 
+                style={[styles.input, { width: '60%', textAlign: 'center'}]}
+                value='1'
+                placeholderTextColor={"#f0f0f0"}
+                keyboardType="numeric"
+                />
+
+            </View>
         </View>
     )
 } 
@@ -51,6 +70,27 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
         marginRight: 14,
+    },
+    input:{
+        backgroundColor: '#101026',
+        borderRadius: 4,
+        width: '100%',
+        height: 40,
+        marginBottom: 12,
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        color: '#fff',
+        fontSize: 20,
+    },
+    qtdConteiner:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    qtdText:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#fff'
     }
     
 })
